@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-Day-01</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>Day 33 - ReactJS Introduction</h1>
+
+    <div id="root"></div>
+    <div id="p-tag"></div>
+    <div id="img-call"></div>
+    <div id="selector"></div>
+    <div id="input"></div>
+
+    <script type="text/babel">
+        // React code will go here
+        function Hello() {
+            return <h1> Hello React</h1>
+        }
+        function Ptag() {
+            return <p>Hi how are you</p>
+        }
+        function CallImage() {
+            return <img src="https://media.wired.com/photos/5a55457ef41e4c2cd9ee6cb5/master/w_2560%2Cc_limit/Doggo-TopArt-104685145.jpg" alt="dog" />
+        }
+        function Select() {
+            return <select name="genre" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        }
+        function Input() {
+            return <input type="text" placeholder="Hi" />
+        }
+        ReactDOM.render(<Hello />, document.getElementById("root"))
+        ReactDOM.render(<Ptag />, document.getElementById("p-tag"))
+        ReactDOM.render(<CallImage />, document.getElementById("img-call"))
+        ReactDOM.render(<Select />, document.getElementById('selector'))
+        ReactDOM.render(<Input />, document.getElementById('input'))
+    </script>
+
+
+
+    <script crossorigin="" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin="" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</body>
+
+</html>
