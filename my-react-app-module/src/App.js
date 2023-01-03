@@ -1,45 +1,31 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import './App.css';
+import Header from './Header';
+import Product from './Product';
+import Product2 from './Product2';
+import Product3 from './Product3';
+import Product4 from './Product4';
+
+import ProductFunc from './ProductFunc';
+import ProductFunc2 from './ProductFunc2'
+import ProductFunc3 from './ProductFunc3';
+import ProductFunc4 from './ProductFunc4';
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
     <div className="App">
-      <header className="App-header">
-        <h1>Popular Products</h1>
-        <hr />
-      </header>
-      <div class="content">
-        <div class="row">
-          <div class="col">
-            <img className="img" src="https://media-be.chewy.com/wp-content/uploads/2021/05/27135654/Shiba-Inu_FeaturedImage-1024x615.jpg" alt="dog"></img>
-          </div>
-          <div class="col">
-            <h2>55</h2>
-            <p class="blue">Haught or Naught</p>
-            <p>High-minded or absent-minded? You decide.</p>
-            <div class="sub">
-              <p class="gray">Submitted by: </p>
-              <img class="selfie" alt="selfie" src="https://i.pinimg.com/originals/c2/36/97/c23697222d025c2c389da132cf30e1d0.jpg" />
-            </div>
-          </div>
-        </div>
+      <Header />
+      <div className="content">
+        <Product />
+        <Product2 />
+        <Product3 />
+        <Product4 />
+        <ProductFunc />
+        <ProductFunc2 />
+        <ProductFunc3 />
+        <ProductFunc4 />
       </div>
     </div>
   );
