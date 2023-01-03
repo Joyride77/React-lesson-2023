@@ -19,6 +19,7 @@ function App() {
       <Header />
       <div className="content">
         <Product />
+        <Product />
         <Product2 />
         <Product3 />
         <Product4 />
