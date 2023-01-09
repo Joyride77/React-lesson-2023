@@ -4,7 +4,7 @@ class Header extends React.Component {
     render() {
         return (
             <header className="App-header m-4">
-                <h1 className="text-primary shadow p-3 bg-body-tertiary rounded">Joyride</h1>
+                <h1 className="text-primary shadow p-3 bg-body-tertiary rounded">Popular Products</h1>
                 <hr className="mb-1" />
             </header>
         )

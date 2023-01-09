@@ -5,19 +5,18 @@ class Product1 extends React.Component {
         return (
             <div class="row mb-4">
                 <div class="col">
-                    <img className="img" src="image/image-aqua.png" alt="dog"></img>
+                    <img className="img" src={this.props.productImageUrl} alt="image"></img>
                 </div>
                 <div class="col-7">
-                    {/* <h2><a onClick={handleUpVode}><i class="bi bi-caret-up-fill"></i></a> 55</h2> */}
-                    <p class="blue">Haught or Naught</p>
-                    <p>High-minded or absent-minded? You decide.</p>
+                    <h2><i class="bi bi-caret-up-fill"></i> {this.props.votes}</h2>
+                    <p class="blue">{this.props.title}</p>
+                    <p>{this.props.description}</p>
                     <div class="sub">
-                        <p class="gray">Submitted by: </p>
-                        <img class="selfie" alt="selfie" src="image/avatars/elliot.jpg" />
+                        <p>Subbmitted by: <img className="avatar" src={this.props.submitterAvatarUrl}></img></p>
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 

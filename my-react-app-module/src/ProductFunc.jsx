@@ -1,20 +1,16 @@
 
-function ProductFunc() {
-    function handleUpVode(props) {
-        console.log(props.id)
-    }
+function ProductFunc(props) {
     return (
         <div class="row mb-4">
             <div class="col">
-                <img className="img" src="image/image-aqua.png" alt="dog"></img>
+                <img className="img" src={props.productImageUrl} alt="image"></img>
             </div>
             <div class="col-7">
-                <h2><a onClick={() => { handleUpVode(props) }}><i class="bi bi-caret-up-fill"></i></a> 55</h2>
-                <p class="blue">Haught or Naught</p>
-                <p>High-minded or absent-minded? You decide.</p>
+                <h2><i class="bi bi-caret-up-fill"></i> {props.votes}</h2>
+                <p class="blue">{props.title}</p>
+                <p>{props.description}</p>
                 <div class="sub">
-                    <p class="gray">Submitted by: </p>
-                    <img class="selfie" alt="selfie" src="image/avatars/elliot.jpg" />
+                    <p>Subbmitted by: <img className="avatar" src={props.submitterAvatarUrl}></img></p>
                 </div>
             </div>
         </div>
