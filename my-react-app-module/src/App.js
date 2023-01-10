@@ -27,18 +27,18 @@ function App() {
       />
     );
   });
-  const productList2 = products.map((product) => {
-    return (
-      <ProductFunc
-        id={product.id}
-        title={product.title}
-        productImageUrl={product.productImageUrl}
-        description={product.description}
-        submitterAvatarUrl={product.submitterAvatarUrl}
-        votes={product.votes}
-      />
-    );
-  });
+  // const productList2 = products.map((product) => {
+  //   return (
+  //     <ProductFunc
+  //       id={product.id}
+  //       title={product.title}
+  //       productImageUrl={product.productImageUrl}
+  //       description={product.description}
+  //       submitterAvatarUrl={product.submitterAvatarUrl}
+  //       votes={product.votes}
+  //     />
+  //   );
+  // });
   return (
     <div className="App">
       <Header />
@@ -48,10 +48,10 @@ function App() {
           Function components
         </h3>
         {productList}
-        <h3 className="text-info shadow p-3 bg-body-tertiary rounded w-50 text-center m-auto my-5">
+        {/* <h3 className="text-info shadow p-3 bg-body-tertiary rounded w-50 text-center m-auto my-5">
           Class components
         </h3>
-        {productList2}
+        {productList2} */}
       </div>
     </div>
   );
