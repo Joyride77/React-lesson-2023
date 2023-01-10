@@ -3,15 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./App.css";
 import Header from "./Header";
-// import Product from "./Product";
-// import Product2 from "./Product2";
-// import Product3 from "./Product3";
-// import Product4 from "./Product4";
-
 import ProductFunc from "./ProductFunc";
-// import ProductFunc2 from "./ProductFunc2";
-// import ProductFunc3 from "./ProductFunc3";
-// import ProductFunc4 from "./ProductFunc4";
 import products from "./seed";
 
 function App() {
@@ -24,6 +16,7 @@ function App() {
         description={product.description}
         submitterAvatarUrl={product.submitterAvatarUrl}
         votes={product.votes}
+        stars={product.stars}
       />
     );
   });
