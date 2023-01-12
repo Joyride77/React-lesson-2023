@@ -1,5 +1,6 @@
 import "./App.css";
 import Counter from "./components/Counter";
+import Davtlaga from "./components/Davtlaga";
 import Exercise from "./components/Exercise";
 import SpreadArray from "./components/SpreadArray";
 import UpdateArrays from "./components/UpdateArrays";
@@ -12,7 +13,8 @@ function App() {
       {/* <Counter /> */}
       {/* <UpdateArrays /> */}
       {/* <SpreadArray /> */}
-      <UpdatingObjects />
+      {/* <UpdatingObjects /> */}
+      <Davtlaga />
     </div>
   );
 }
