@@ -23,6 +23,8 @@ const Index = () => {
                 <Link to={'/home'} state={homePageData}>Home Page</Link>
                 <Link to={'/accordion'}>Accordion</Link>
                 <Link to={'/movies'}>Movies</Link>
+                <Link to={'/gallery'}>Image Gallery</Link>
+                <Link to={'/toaster'}>Toaster Page</Link>
 
             </nav>
         </div>
