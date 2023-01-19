@@ -8,15 +8,10 @@ import { useState } from "react";
 
 function App() {
   const [wishList, setWishList] = useState([]);
-  // const [liked, setLiked] = useState(false);
+
   return (
     <div>
-      <Header
-        wishList={wishList}
-        setWishList={setWishList}
-        // liked={liked}
-        // setLiked={setLiked}
-      />
+      <Header wishList={wishList} setWishList={setWishList} />
 
       <div className="main ui text container">
         <h1 className="ui dividing centered header">Popular Products</h1>
@@ -25,15 +20,13 @@ function App() {
           <Route
             path="/"
             element={
-              <ProductList
-                wishList={wishList}
-                setWishList={setWishList}
-                // liked={liked}
-                // setLiked={setLiked}
-              />
+              <ProductList wishList={wishList} setWishList={setWishList} />
             }
           />
-          <Route path="/product/:id" element={<Product />} />
+          <Route
+            path="/product/:id"
+            element={<Product wishList={wishList} setWishList={setWishList} />}
+          />
         </Routes>
         <Outlet />
       </div>

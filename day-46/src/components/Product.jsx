@@ -1,31 +1,38 @@
 import { Rating } from "react-simple-star-rating";
 import products from "../data/seed";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 export default function Product(props) {
   const { id } = useParams();
+  console.log(id);
 
   let foundProduct = {};
   if (id) {
+
     foundProduct = products.filter((product) => {
       if (product.id == id) {
         return product;
       }
     })[0];
+
   }
-  if (Object.keys(props).length > 0) {
+
+
+  if (props.product) {
     foundProduct = props.product;
   }
 
   const product = foundProduct;
+  console.log(foundProduct);
 
   const liked = props.wishList.filter(wish => wish.id === product.id)[0];
-  console.log("liked", liked);
+
   return (
     <div className="item">
       <div className="image">
-        <img src={product.productImageUrl} />
+        <Link to={`/product/${foundProduct.id}`}>
+          <img src={product.productImageUrl} />
+        </Link>
       </div>
       <div className="middle aligned content">
         <div className="header">
@@ -66,7 +73,7 @@ export default function Product(props) {
         </div>
         <div className="extra">
           <span>Submitted by:</span>
-          <img className="ui avatar image" src={product.submitterAvatarUrl} />
+          <img className="ui avatar image" src={product.submitterAvatarUrl} alt={product.name} />
         </div>
         <Rating initialValue={5} />
       </div>
