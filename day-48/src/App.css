@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.triangle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.triangle-row {
+  display: flex;
+}
+
+.triangle-cell {
+  padding: 5px;
+  margin: 0 5px;
+  background-color: #ddd;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  flex: 1;
+}

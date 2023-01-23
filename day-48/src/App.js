@@ -4,6 +4,9 @@ import "./App.css";
 // import Input from "./components/Input";
 import Anime from "./components/Anime";
 import Button from "./components/Button";
+import Excises from "./components/Excises";
+import ExFindEvenOdd from "./components/ExFindEvenOdd";
+import Pascal from "./components/Pascal";
 import TopAnime from "./components/TopAnime";
 
 function App() {
@@ -34,9 +37,12 @@ function App() {
         />
         <br />
       </form> */}
-      <Anime />
+      {/* <Anime />
       <Button />
-      <TopAnime />
+      <TopAnime /> */}
+      {/* <Excises /> */}
+      {/* <ExFindEvenOdd /> */}
+      <Pascal />
     </div>
   );
 }
