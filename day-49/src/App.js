@@ -1,23 +1,12 @@
 import "./App.css";
-import React, { useState } from "react";
-import Counter from "./components/Counter";
+import React from "react";
+import TimerDashboard from "./timercomponent/TimerDashboard";
 
 function App() {
-  const [isFancy, setIsFancy] = useState(false);
   return (
-    <div className="App">
-      {isFancy ? <Counter isFancy={true} /> : <Counter isFancy={false} />}
-      <label>
-        <input
-          type="checkbox"
-          checked={isFancy}
-          onChange={(e) => {
-            setIsFancy(e.target.checked);
-            console.log("e", e);
-          }}
-        />
-        Use fancy styling
-      </label>
+    <div>
+      <h1>Timer App</h1>
+      <TimerDashboard />
     </div>
   );
 }
