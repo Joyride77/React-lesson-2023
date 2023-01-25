@@ -2,7 +2,7 @@
 import Button from '@mui/material/Button';
 
 const TimerActionButton = ({ isTimerRunning, onStartClick, onStopClick }) => {
-    console.log(isTimerRunning)
+    // console.log(isTimerRunning)
     return (
         <div>
             {

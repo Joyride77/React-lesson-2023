@@ -1,65 +1,77 @@
-import React from 'react'
-import Container from '@mui/material/Container'
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import TimerActionButton from './TimerActionButton';
-import { useState } from 'react';
-import { renderElapsedString } from './Helpers';
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import { Box, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import TimerActionButton from "./TimerActionButton";
+import { renderElapsedString } from "./Helpers";
 
-const Timer = ({ title, project, elapsed, runningSince, runningTime }) => {
-
-    const [timerIsRunning, setTimerIsRunning] = useState(false)
-    const [startTime, setStartTime] = useState(null);
-    const [now, setNow] = useState(null);
+export default function Timer({ id, title, project, elapsed, runningSince, onTrashClick, onStartClick, onStopClick, onEditClick }) {
     const timer = renderElapsedString(elapsed, runningSince);
 
-    // function onStartClick() {
+    function handleEditClick() {
+        onEditClick(id);
+    }
 
-    // }
+    function handleDelete() {
+        onTrashClick(id)
+    }
 
-    let secondsPassed = 0;
-    if (startTime != null && now != null) {
-        secondsPassed = (now - startTime) / 1000;
+    function handleStartClick() {
+        onStartClick(id)
+    }
+
+    function handleStopClick() {
+        onStopClick(id)
     }
 
     return (
         <Container maxWidth="sm">
-            <Card sx={{ maxWidth: 345 }} >
-                <Typography sx={{ fontSize: 28 }} color='text.secondary'>
+            <Card
+                sx={{
+                    maxWidth: 345,
+                    marginBottom: 5,
+                }}
+            >
+                <Typography sx={{ fontSize: 28 }} color="text.secondary">
                     {title}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {project}
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <h1>{secondsPassed.toFixed(3)}</h1>
-                </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                ></Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
                     <h1>{timer}</h1>
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                    <ModeEditIcon />
-                    <DeleteIcon />
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        marginBottom: 2,
+                    }}
+                >
+                    <DeleteIcon onClick={handleDelete} />
+                    <ModeEditIcon onClick={handleEditClick} />
                 </Box>
                 <TimerActionButton
-                    isTimerRunning={timerIsRunning}
-                    onStartClick={() => {
-                        setTimerIsRunning(true);
-                        setStartTime(Date.now());
-                        setNow(Date.now());
-
-                        setInterval(() => {
-                            setNow(Date.now());
-                        }, 10)
-                    }}
-                    onStopClick={() => setTimerIsRunning(false)}
+                    isTimerRunning={runningSince}
+                    onStartClick={handleStartClick}
+                    onStopClick={handleStopClick}
                 />
             </Card>
         </Container>
-    )
+    );
 }
-
-export default Timer
