@@ -26,23 +26,33 @@ app.get("/data", (request, response) => {
 });
 
 app.post("/data", (request, response) => {
-  //   console.log(request.method);
-  //   console.log(request.headers);
-  console.log(request.body);
   const length = data.length;
-  const newData = {
+  const requestData = {
     id: length + 1,
     name: request.body.name,
     major: request.body.major,
   };
-  data.push(newData);
+  data = [...data, requestData];
   response.json(data);
 });
 
 app.delete("/data", (request, response) => {
-  console.log(request.body);
-  const newData = data.filter((d) => d.id !== request.body.id);
+  const deleteData = data.filter((d) => d.id !== request.body.id);
+  data = deleteData;
+  response.json(data);
+});
+
+app.put("/data", (request, response) => {
+  console.log("request", request.body);
+  const newData = data.map((d) => {
+    if (d.id === request.body.id) {
+      (d.name = request.body.name), (d.major = request.body.major);
+    }
+    return d;
+  });
+
   data = newData;
+
   response.json(data);
 });
 
