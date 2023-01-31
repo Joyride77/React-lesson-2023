@@ -28,7 +28,6 @@ app.get("/users", (request, response) => {
 
 app.post("/users", (request, response) => {
   const body = request.body;
-  //   console.log(body);
 
   const newUser = {
     id: Date.now().toString(),
@@ -60,6 +59,44 @@ app.post("/users", (request, response) => {
         response.json({
           status: "success",
           data: dataObject,
+        });
+      }
+    );
+  });
+});
+
+app.put("/users", (request, response) => {
+  console.log(request.body);
+
+  fs.readFile("./data/users.json", "utf8", (readError, readData) => {
+    if (readError) {
+      response.json({
+        status: "File read error",
+        data: [],
+      });
+    }
+
+    const savedData = JSON.parse(readData);
+    const changedData = savedData.map((d) => {
+      if (d.id === request.body.id) {
+        (d.username = request.body.username), (d.age = request.body.age);
+      }
+      return d;
+    });
+
+    fs.writeFile(
+      "./data/users.json",
+      JSON.stringify(changedData),
+      (writeError) => {
+        if (writeError) {
+          response.json({
+            status: "File write error",
+            data: [],
+          });
+        }
+        response.json({
+          status: "success",
+          data: changedData,
         });
       }
     );
