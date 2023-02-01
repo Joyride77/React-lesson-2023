@@ -56,7 +56,6 @@ const Sidebar = () => {
         >
             <ProSidebar collapsed={isCollapsed}>
                 <Menu iconShape="square">
-                    {/* LOGO AND MENU ICON */}
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -138,7 +137,7 @@ const Sidebar = () => {
                             <MenuItem>
                                 <Item
                                     title="Management"
-                                    to="/management"
+                                    to="/product-management"
                                     icon={<LensBlurIcon />}
                                     selected={selected}
                                     setSelected={setSelected}

@@ -1,11 +1,28 @@
+import React, { useState, useEffect } from 'react'
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import Header from "./Header";
 import { tokens } from "../theme/theme";
 import { Link } from "react-router-dom";
 import { Stack, Button } from "@mui/material";
 
-const ManagementTable = () => {
+const ProductTable = () => {
+  const URL = "http://localhost:8080/products"
+  const [product, setProduct] = useState([])
+
+  useEffect(() => {
+    fetchAllData();
+  }, [])
+
+  async function fetchAllData() {
+    const FETCHED_DATA = await fetch(URL);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    setProduct(FETCHED_JSON.data)
+  }
+
+  async function handleDelete(access) {
+    console.log("delete", access);
+  }
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -23,16 +40,12 @@ const ManagementTable = () => {
         return (
           <Box
             width="100%"
-            // m="0 auto"
-            // p="5px"
-            // display="flex"
-            // justifyContent="center"
           >
             <Stack direction="row" spacing={2}>
               <Button variant="contained" color="success">
                 Edit
               </Button>
-              <Button variant="outlined" color="error">
+              <Button variant="outlined" color="error" onClick={() => handleDelete(access)}>
                 Delete
               </Button>
             </Stack>
@@ -41,21 +54,8 @@ const ManagementTable = () => {
       },
     },
   ];
-
-  const rows = [
-    { id: 1, title: "Snow", subTitle: "Jon", price: 35 },
-    { id: 2, title: "Lannister", subTitle: "Cersei", price: 42 },
-    { id: 3, title: "Lannister", subTitle: "Jaime", price: 45 },
-    { id: 4, title: "Stark", subTitle: "Arya", price: 16 },
-    { id: 5, title: "Targaryen", subTitle: "Daenerys", price: 32 },
-    { id: 6, title: "Melisandre", subTitle: "Hey", price: 150 },
-    { id: 7, title: "Clifford", subTitle: "Ferrara", price: 44 },
-    { id: 8, title: "Frances", subTitle: "Rossini", price: 36 },
-    { id: 9, title: "Roxie", subTitle: "Harvey", price: 65 },
-  ];
   return (
     <Box m="20px">
-      <Header title="Products" subtitle="Managing the Products" />
       <Link to={"/create-product"} style={{ textDecoration: "none" }}>
         <Button variant="contained" color="success">
           CREATE PRODUCT
@@ -91,15 +91,15 @@ const ManagementTable = () => {
         }}
       >
         <DataGrid
-          rows={rows}
+          rows={product}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          // checkboxSelection
+        // checkboxSelection
         />
       </Box>
     </Box>
   );
 };
 
-export default ManagementTable;
+export default ProductTable;

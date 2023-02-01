@@ -5,9 +5,9 @@ import { ColorModeContext, useMode } from "./theme/theme";
 import Topbar from "./global/Topbar";
 import Sidebar from "./global/Sidebar";
 import Dashboard from "./pages/Dashboard";
-import Management from "./pages/Management";
 import Form from "./pages/Form";
 import CreateProduct from "./pages/CreateProduct";
+import ProductManagement from "./pages/ProductTable";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -24,7 +24,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/management" element={<Management />} />
+              <Route
+                path="/product-management"
+                element={<ProductManagement />}
+              />
               <Route path="/create-product" element={<CreateProduct />} />
             </Routes>
           </main>
