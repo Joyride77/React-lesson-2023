@@ -71,6 +71,39 @@ app.post("/products", (request, response) => {
   });
 });
 
+app.delete("/products", (request, response) => {
+  const body = request.body;
+  fs.readFile("./data/products.json", "utf-8", (readError, readData) => {
+    if (readError) {
+      response.json({
+        status: "File reader error",
+        body: [],
+      });
+    }
+
+    const readObject = JSON.parse(readData);
+    const filteredObjects = readObject.filter((w) => w.id !== body.productId);
+
+    fs.writeFile(
+      "./data/products.json",
+      JSON.stringify(filteredObjects),
+      (writeError) => {
+        if (writeError) {
+          response.json({
+            status: "write file error",
+            body: [],
+          });
+        }
+
+        response.json({
+          status: "success",
+          data: filteredObjects,
+        });
+      }
+    );
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

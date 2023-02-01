@@ -19,8 +19,20 @@ const ProductTable = () => {
     setProduct(FETCHED_JSON.data)
   }
 
-  async function handleDelete(access) {
-    console.log("delete", access);
+  async function handleDelete(productId) {
+    console.log("delete", productId);
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productId: productId,
+      }),
+    };
+    const FETCHED_DATA = await fetch(URL, options);
+    const FETCHED_JSON = await FETCHED_DATA.json();
+    setProduct(FETCHED_JSON.data);
   }
 
   const theme = useTheme();
@@ -36,7 +48,7 @@ const ProductTable = () => {
       field: "actions",
       headerName: "Actions",
       flex: 1,
-      renderCell: ({ row: { access } }) => {
+      renderCell: (params) => {
         return (
           <Box
             width="100%"
@@ -45,7 +57,7 @@ const ProductTable = () => {
               <Button variant="contained" color="success">
                 Edit
               </Button>
-              <Button variant="outlined" color="error" onClick={() => handleDelete(access)}>
+              <Button variant="outlined" color="error" onClick={() => handleDelete(params.row.id)}>
                 Delete
               </Button>
             </Stack>
