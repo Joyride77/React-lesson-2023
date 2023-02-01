@@ -1,4 +1,5 @@
-import { Box, IconButton, useTheme } from "@mui/material";
+import React, { useState, useEffect } from 'react'
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../theme/theme";
 import InputBase from "@mui/material/InputBase";
@@ -10,14 +11,33 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Topbar = () => {
+    const [time, setTime] = useState(new Date());
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
 
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setTime(new Date());
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, []);
+
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+
+    const CurrentDate = (props) => {
+        return (
+            <div>
+                {props.date.toLocaleDateString()}
+            </div>
+        );
+    };
+
     return (
         <Box display="flex" justifyContent="space-between" p={2}>
-            {/* SEARCH BAR */}
-            <Box
+
+            {/* <Box
                 display="flex"
                 backgroundColor={colors.primary[400]}
                 borderRadius="3px"
@@ -26,9 +46,19 @@ const Topbar = () => {
                 <IconButton type="button" sx={{ p: 1 }}>
                     <SearchIcon />
                 </IconButton>
+            </Box> */}
+            <Box>
+                <Typography
+                    variant="h5"
+                    color={colors.grey[300]}
+                    sx={{ m: "5px 0 0 10px" }}
+                >
+                    {hours}:{minutes} PM
+                    <CurrentDate date={new Date()} />
+                </Typography>
             </Box>
 
-            {/* ICONS */}
+
             <Box display="flex">
                 <IconButton onClick={colorMode.toggleColorMode}>
                     {theme.palette.mode === "dark" ? (
