@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, useTheme, Stack, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../theme/theme";
 import { Link } from "react-router-dom";
-import { Stack, Button } from "@mui/material";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ProductTable = () => {
   const URL = "http://localhost:8080/products"
   const [product, setProduct] = useState([])
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
     fetchAllData();
@@ -33,10 +36,9 @@ const ProductTable = () => {
     const FETCHED_DATA = await fetch(URL, options);
     const FETCHED_JSON = await FETCHED_DATA.json();
     setProduct(FETCHED_JSON.data);
+
   }
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const columns = [
     // { field: "id", headerName: "ID", width: 70 },
     {
@@ -64,11 +66,11 @@ const ProductTable = () => {
             <Stack direction="row" spacing={2}>
               <Link to={`/edit-product/${params.row.id}`} style={{ textDecoration: "none" }}>
                 <Button variant="contained" color="success">
-                  Edit
+                  <EditIcon />
                 </Button>
               </Link>
               <Button variant="outlined" color="error" onClick={() => handleDelete(params.row.id)}>
-                Delete
+                <DeleteForeverIcon />
               </Button>
             </Stack>
           </Box>
@@ -87,6 +89,7 @@ const ProductTable = () => {
         m="40px 0 0 0"
         height="50vh"
         sx={{
+          width: 850,
           "& .MuiDataGrid-root": {
             border: "none",
           },

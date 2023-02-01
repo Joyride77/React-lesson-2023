@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import { Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select, Stack, Button } from "@mui/material";
+import LilNavi from '../components/LilNavi';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 const EditProduct = () => {
     const URL = "http://localhost:8080/products"
@@ -64,80 +66,84 @@ const EditProduct = () => {
 
 
     return (
-        <Box m="20px" sx={{ width: 550 }}>
+        <Box m="20px">
+            <LilNavi first="Dashboard" second="Management" third="Edit Product" />
             <Header title="Edit Product" subtitle="Edit Product" />
-            {filteredProduct &&
-                filteredProduct.map((w, index) => {
-                    return (
-                        <div key={index}>
-                            <form>
-                                <Grid container spacing={4}>
-                                    <Grid item xs={12}>
-                                        <TextField name='id' defaultValue={w.id} onClick={handleId} id="filled-required" label="Id" variant="filled" color="secondary" InputProps={{ readOnly: true, }} fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField name='title' defaultValue={w.title} onChange={handleTitle} id="filled-required" label="Title" variant="filled" color="secondary" required fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField name='subTitle' defaultValue={w.subTitle} onChange={handleSubTitle} id="filled-required" label="Sub Title" variant="filled" color="secondary" required fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField name='price' defaultValue={w.price} onChange={handlePrice} id="filled-number" label="Price" InputLabelProps={{ shrink: true, }} type="number" variant="filled" color="secondary" required fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField name='description' defaultValue={w.description} onChange={handleDescription} id="filled-required" label="Sub Description" variant="filled" color="secondary" required fullWidth />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-autowidth-label" color="secondary">Color</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-autowidth-label"
-                                                id="demo-simple-select-autowidth"
-                                                // value={color}
-                                                onChange={handleChange}
-                                                label="Color"
-                                                variant="filled"
-                                                color="secondary"
-                                                required
-                                                name='color'
-                                                defaultValue={w.color}
-                                            >
-                                                <MenuItem value="">
-                                                    <em>None</em>
-                                                </MenuItem>
-                                                <MenuItem value={"White"}>White</MenuItem>
-                                                <MenuItem value={"Black"}>Black</MenuItem>
-                                                <MenuItem value={"Red"}>Red</MenuItem>
-                                                <MenuItem value={"Blue"}>Blue</MenuItem>
-                                                <MenuItem value={"Yellow"}>Yellow</MenuItem>
-                                                <MenuItem value={"Orange"}>Orange</MenuItem>
-                                                <MenuItem value={"Green"}>Green</MenuItem>
-                                                <MenuItem value={"Pink"}>Pink</MenuItem>
-                                                <MenuItem value={"Purple"}>Purple</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Stack direction="row" spacing={2}>
-                                            <Button variant="contained" color="success" fullWidth
-                                                onClick={handleEdit}
-                                            >
-                                                Save
-                                            </Button>
-                                            <Link to={"/product-management"} style={{ textDecoration: "none" }}>
-                                                <Button variant="outlined" color='secondary'>
-                                                    Back
+
+            <Box sx={{ width: 550 }}>
+                {filteredProduct &&
+                    filteredProduct.map((w, index) => {
+                        return (
+                            <div key={index}>
+                                <form>
+                                    <Grid container spacing={4}>
+                                        <Grid item xs={12}>
+                                            <TextField name='id' defaultValue={w.id} onClick={handleId} id="filled-required" label="Id" variant="filled" color="secondary" InputProps={{ readOnly: true, }} fullWidth />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField name='title' defaultValue={w.title} onChange={handleTitle} id="filled-required" label="Title" variant="filled" color="secondary" required fullWidth />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField name='subTitle' defaultValue={w.subTitle} onChange={handleSubTitle} id="filled-required" label="Sub Title" variant="filled" color="secondary" required fullWidth />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField name='price' defaultValue={w.price} onChange={handlePrice} id="filled-number" label="Price" InputLabelProps={{ shrink: true, }} type="number" variant="filled" color="secondary" required fullWidth />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextField name='description' defaultValue={w.description} onChange={handleDescription} id="filled-required" label="Sub Description" variant="filled" color="secondary" required fullWidth />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-autowidth-label" color="secondary">Color</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-autowidth-label"
+                                                    id="demo-simple-select-autowidth"
+                                                    // value={color}
+                                                    onChange={handleChange}
+                                                    label="Color"
+                                                    variant="filled"
+                                                    color="secondary"
+                                                    required
+                                                    name='color'
+                                                    defaultValue={w.color}
+                                                >
+                                                    <MenuItem value="">
+                                                        <em>None</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={"White"}>White</MenuItem>
+                                                    <MenuItem value={"Black"}>Black</MenuItem>
+                                                    <MenuItem value={"Red"}>Red</MenuItem>
+                                                    <MenuItem value={"Blue"}>Blue</MenuItem>
+                                                    <MenuItem value={"Yellow"}>Yellow</MenuItem>
+                                                    <MenuItem value={"Orange"}>Orange</MenuItem>
+                                                    <MenuItem value={"Green"}>Green</MenuItem>
+                                                    <MenuItem value={"Pink"}>Pink</MenuItem>
+                                                    <MenuItem value={"Purple"}>Purple</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Stack direction="row" spacing={2}>
+                                                <Button variant="contained" color="success" fullWidth
+                                                    onClick={handleEdit}
+                                                >
+                                                    <SaveAltIcon />
                                                 </Button>
-                                            </Link>
-                                        </Stack>
+                                                <Link to={"/product-management"} style={{ textDecoration: "none" }}>
+                                                    <Button variant="outlined" color='secondary'>
+                                                        Back
+                                                    </Button>
+                                                </Link>
+                                            </Stack>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
 
-                    )
-                })}
+                        )
+                    })}
 
+            </Box>
         </Box>
     )
 }
