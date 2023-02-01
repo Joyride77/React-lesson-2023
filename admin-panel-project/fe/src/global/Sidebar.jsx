@@ -134,15 +134,15 @@ const Sidebar = () => {
                         />
 
                         <SubMenu title="E - commerce" icon={<ShoppingCartIcon />} >
-                            <MenuItem>
-                                <Item
-                                    title="Management"
-                                    to="/product-management"
-                                    icon={<LensBlurIcon />}
-                                    selected={selected}
-                                    setSelected={setSelected}
-                                />
-                            </MenuItem>
+                            {/* <MenuItem> */}
+                            <Item
+                                title="Management"
+                                to="/product-management"
+                                icon={<LensBlurIcon />}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                            {/* </MenuItem> */}
                         </SubMenu>
                     </Box>
                 </Menu>

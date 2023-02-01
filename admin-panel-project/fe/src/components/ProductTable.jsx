@@ -38,12 +38,20 @@ const ProductTable = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "img", headerName: "Image", width: 130 },
-    { field: "title", headerName: "Title", width: 130 },
-    { field: "subTitle", headerName: "Subtitle", width: 130 },
-    { field: "price", headerName: "Price", width: 130 },
-    { field: "rating", headerName: "Rating", width: 130 },
+    // { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "img", headerName: "Image", width: 100,
+      renderCell: (params) => {
+        return (
+          <div><img src={params.row.img} alt="" /></div>
+        )
+      }
+    },
+    { field: "title", headerName: "Title", width: 100 },
+    { field: "subTitle", headerName: "Subtitle", width: 100 },
+    { field: "price", headerName: "Price", width: 100 },
+    { field: "description", headerName: "Description", width: 100 },
+    { field: "color", headerName: "Color", width: 100 },
     {
       field: "actions",
       headerName: "Actions",
@@ -54,9 +62,11 @@ const ProductTable = () => {
             width="100%"
           >
             <Stack direction="row" spacing={2}>
-              <Button variant="contained" color="success">
-                Edit
-              </Button>
+              <Link to={`/edit-product/${params.row.id}`} style={{ textDecoration: "none" }}>
+                <Button variant="contained" color="success">
+                  Edit
+                </Button>
+              </Link>
               <Button variant="outlined" color="error" onClick={() => handleDelete(params.row.id)}>
                 Delete
               </Button>

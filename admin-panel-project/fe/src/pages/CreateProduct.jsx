@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../components/Header';
-import { Button, Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
+import { Button, Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select, Stack } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 
 const CreateProduct = () => {
@@ -110,7 +111,15 @@ const CreateProduct = () => {
                             <TextField placeholder="Enter Rating" id="filled-number" label="Rating" type="number" InputLabelProps={{ shrink: true, }} variant="filled" color="secondary" required fullWidth />
                         </Grid> */}
                         <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="success" fullWidth>Submit</Button>
+                            <Stack direction="row" spacing={2}>
+                                <Button type="submit" variant="contained" color="success" fullWidth>Submit</Button>
+                                <Link to={"/product-management"} style={{ textDecoration: "none" }}>
+                                    <Button variant="outlined" color='secondary'>
+                                        Back
+                                    </Button>
+                                </Link>
+
+                            </Stack>
                         </Grid>
                     </Grid>
                 </form>

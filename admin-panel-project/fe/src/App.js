@@ -7,7 +7,8 @@ import Sidebar from "./global/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Form from "./pages/Form";
 import CreateProduct from "./pages/CreateProduct";
-import ProductManagement from "./pages/ProductTable";
+import ProductManagement from "./pages/ProductManagement";
+import EditProduct from "./pages/EditProduct";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -29,6 +30,7 @@ function App() {
                 element={<ProductManagement />}
               />
               <Route path="/create-product" element={<CreateProduct />} />
+              <Route path="/edit-product/:id" element={<EditProduct />} />
             </Routes>
           </main>
         </div>

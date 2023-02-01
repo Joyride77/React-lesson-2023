@@ -31,7 +31,7 @@ app.get("/products", (request, response) => {
 app.post("/products", (request, response) => {
   const body = request.body;
 
-  console.log("body", body);
+  // console.log("body", body);
 
   const newProduct = {
     id: Date.now().toString(),
@@ -65,6 +65,49 @@ app.post("/products", (request, response) => {
         response.json({
           status: "success",
           data: dataObject,
+        });
+      }
+    );
+  });
+});
+
+app.put("/products", (request, response) => {
+  console.log(request.body);
+
+  fs.readFile("./data/products.json", "utf8", (readError, readData) => {
+    if (readError) {
+      response.json({
+        status: "File read error",
+        data: [],
+      });
+    }
+
+    const savedData = JSON.parse(readData);
+    // console.log("saved", savedData);
+    const changedData = savedData.map((d) => {
+      if (d.id === request.body.id) {
+        (d.title = request.body.title),
+          (d.subTitle = request.body.subTitle),
+          (d.price = request.body.price),
+          (d.description = request.body.description),
+          (d.color = request.body.color);
+      }
+      return d;
+    });
+
+    fs.writeFile(
+      "./data/products.json",
+      JSON.stringify(changedData),
+      (writeError) => {
+        if (writeError) {
+          response.json({
+            status: "File write error",
+            data: [],
+          });
+        }
+        response.json({
+          status: "success",
+          data: changedData,
         });
       }
     );
