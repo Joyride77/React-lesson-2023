@@ -13,19 +13,6 @@ import Users from "./pages/Users";
 import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
 
-import {} from "./services/axiosProductsServices";
-
-// import {
-//   Dashboard,
-//   Form,
-//   CreateProduct,
-//   ProductManagement,
-//   EditProduct,
-//   Users,
-//   CreateUser,
-//   EditUser,
-// } from "./pages";
-
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import Header from '../components/Header'
 import { Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select, Stack, Button } from "@mui/material";
 import LilNavi from '../components/LilNavi';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import { updateProduct } from "../services/axiosProductsServices"
 
 const EditProduct = () => {
-
     let data = useLocation();
     console.log("data", data.state.product);
     const URL = "http://localhost:8080/products"
@@ -15,35 +15,8 @@ const EditProduct = () => {
     const [color, setColor] = React.useState('');
     const [currentProduct, setCurrentProduct] = useState(data.state.product[0]);
 
-    // async function fetchAllData() {
-    //     const FETCHED_DATA = await fetch(URL);
-    //     const FETCHED_JSON = await FETCHED_DATA.json();
-    //     setProduct(FETCHED_JSON.data)
-    //     const filteredProduct = product.filter(data => data.id === id)
-    //     console.log(filteredProduct);
-    //     setCurrentProduct(filteredProduct[0]);
-
-    // }
-
     async function handleEdit() {
-        const putData = {
-            id: currentProduct.id,
-            title: currentProduct.title,
-            subTitle: currentProduct.subTitle,
-            price: currentProduct.price,
-            description: currentProduct.description,
-            color: currentProduct.color
-        }
-        const options = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(putData),
-        };
-        const FETCHED_DATA = await fetch(URL, options);
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        setProduct(FETCHED_JSON.data);
+        updateProduct(currentProduct, URL, setProduct)
     }
 
     function handleTitle(e) {

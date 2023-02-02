@@ -4,58 +4,25 @@ import { Button, Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select
 import { Link } from 'react-router-dom';
 import LilNavi from '../components/LilNavi';
 import PublishIcon from '@mui/icons-material/Publish';
-
+import { fetchAllData, createProduct } from "../services/axiosProductsServices"
 
 const CreateProduct = () => {
     const URL = "http://localhost:8080/products"
-    const newProduct = {
-        title: "",
-        subTitle: "",
-        price: "",
-        description: "",
-        color: "",
-    };
-
     const [color, setColor] = React.useState('');
     const [product, setProduct] = useState([])
 
     useEffect(() => {
-        fetchAllData();
+        fetchAllData(URL, setProduct);
     }, [])
 
-    async function fetchAllData() {
-        const FETCHED_DATA = await fetch(URL);
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        setProduct(FETCHED_JSON.data)
-    }
-
-
     async function handleSubmit(e) {
-        e.preventDefault();
-        const postData = {
-            title: e.target.title.value,
-            subTitle: e.target.subTitle.value,
-            price: e.target.price.value,
-            description: e.target.description.value,
-            color: e.target.color.value,
-        }
-        console.log("data", postData);
-
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(postData),
-        }
-
-        const FETCHED_DATA = await fetch(URL, options);
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        setProduct(FETCHED_JSON.data);
+        createProduct(e, URL, setProduct);
     }
+
     const handleChange = (event) => {
         setColor(event.target.value);
     };
+
     return (
         <Box m="20px">
             <LilNavi first="Dashboard" second="Management" third="Creating New Product" />

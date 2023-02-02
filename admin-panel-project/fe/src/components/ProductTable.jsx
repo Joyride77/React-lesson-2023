@@ -5,6 +5,7 @@ import { tokens } from "../theme/theme";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+import { fetchAllData, deleteProduct } from "../services/axiosProductsServices"
 
 const ProductTable = () => {
   const URL = "http://localhost:8080/products"
@@ -13,30 +14,11 @@ const ProductTable = () => {
   const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
-    fetchAllData();
+    fetchAllData(URL, setProduct);
   }, [])
 
-  async function fetchAllData() {
-    const FETCHED_DATA = await fetch(URL);
-    const FETCHED_JSON = await FETCHED_DATA.json();
-    setProduct(FETCHED_JSON.data)
-  }
-
   async function handleDelete(productId) {
-    console.log("delete", productId);
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        productId: productId,
-      }),
-    };
-    const FETCHED_DATA = await fetch(URL, options);
-    const FETCHED_JSON = await FETCHED_DATA.json();
-    setProduct(FETCHED_JSON.data);
-
+    deleteProduct(productId, URL, setProduct);
   }
 
   const columns = [

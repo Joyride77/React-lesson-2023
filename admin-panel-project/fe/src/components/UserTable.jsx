@@ -5,6 +5,7 @@ import { tokens } from "../theme/theme";
 import { Link } from "react-router-dom";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
+import { fetchAllData, deleteUser } from "../services/axiosUserServices"
 
 const UserTable = () => {
     const URL = "http://localhost:8080/users"
@@ -13,40 +14,22 @@ const UserTable = () => {
     const colors = tokens(theme.palette.mode);
 
     useEffect(() => {
-        fetchAllData();
+        fetchAllData(URL, setUser);
     }, [])
 
-    async function fetchAllData() {
-        const FETCHED_DATA = await fetch(URL);
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        setUser(FETCHED_JSON.data)
-    }
-
     async function handleDelete(userId) {
-        console.log("delete", userId);
-        const options = {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                userId: userId,
-            }),
-        };
-        const FETCHED_DATA = await fetch(URL, options);
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        setUser(FETCHED_JSON.data);
-
+        deleteUser(userId, URL, setUser);
     }
-
     const columns = [
         { field: "firstName", headerName: "First Name", width: 100 },
         { field: "lastName", headerName: "Last Name", width: 100 },
         { field: "phoneNumber", headerName: "Phone Number", width: 100 },
         { field: "email", headerName: "E-Mail", width: 100 },
-        { field: "role", headerName: "Role", width: 100 },
-        { field: "Disabled", headerName: "Disabled", width: 100 },
-        { field: "avatar", headerName: "Avatar", width: 100 },
+        { field: "description", headerName: "Description", width: 100 },
+        { field: "password", headerName: "Password", width: 100 },
+        // { field: "role", headerName: "Role", width: 100 },
+        // { field: "Disabled", headerName: "Disabled", width: 100 },
+        // { field: "avatar", headerName: "Avatar", width: 100 },
         {
             field: "actions",
             headerName: "Actions",
@@ -62,7 +45,9 @@ const UserTable = () => {
                                     <EditIcon />
                                 </Button>
                             </Link>
-                            <Button variant="outlined" color="error" onClick={() => handleDelete(params.row.id)}>
+                            <Button variant="outlined" color="error"
+                                onClick={() => handleDelete(params.row.id)}
+                            >
                                 <DeleteForeverIcon />
                             </Button>
                         </Stack>
