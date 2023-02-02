@@ -64,7 +64,7 @@ const ProductTable = () => {
             width="100%"
           >
             <Stack direction="row" spacing={2}>
-              <Link to={`/edit-product/${params.row.id}`} style={{ textDecoration: "none" }}>
+              <Link to={`/edit-product/${params.row.id}`} state={{ product: product.filter(p => p.id === params.row.id) }} style={{ textDecoration: "none" }}>
                 <Button variant="contained" color="success">
                   <EditIcon />
                 </Button>

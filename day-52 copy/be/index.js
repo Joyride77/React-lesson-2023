@@ -1,32 +1,12 @@
-// import necessary module
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 
-/// configuration of moduls
 const app = express();
 const PORT = 8080;
 
 app.use(cors());
 app.use(express.json());
-
-app.get("/products", (request, response) => {
-  fs.readFile("./data/products.json", "utf-8", (readError, readData) => {
-    if (readError) {
-      response.json({
-        status: "File does not exist",
-        data: [],
-      });
-    }
-
-    const objectData = JSON.parse(readData);
-
-    response.json({
-      status: "success",
-      data: objectData,
-    });
-  });
-});
 
 app.get("/users", (request, response) => {
   fs.readFile("./data/users.json", "utf-8", (readError, readData) => {
@@ -46,55 +26,13 @@ app.get("/users", (request, response) => {
   });
 });
 
-app.post("/products", (request, response) => {
-  const body = request.body;
-  const newProduct = {
-    id: Date.now().toString(),
-    title: body.title,
-    subTitle: body.subTitle,
-    price: body.price,
-    description: body.description,
-    color: body.color,
-  };
-
-  fs.readFile("./data/products.json", "utf-8", (readError, readData) => {
-    if (readError) {
-      response.json({
-        status: "File does not exist",
-        data: [],
-      });
-    }
-    const dataObject = JSON.parse(readData);
-    dataObject.push(newProduct);
-
-    fs.writeFile(
-      "./data/products.json",
-      JSON.stringify(dataObject),
-      (writeError) => {
-        if (writeError) {
-          response.json({
-            status: "Error during file write",
-            data: [],
-          });
-        }
-        response.json({
-          status: "success",
-          data: dataObject,
-        });
-      }
-    );
-  });
-});
-
 app.post("/users", (request, response) => {
   const body = request.body;
+
   const newUser = {
     id: Date.now().toString(),
-    // title: body.title,
-    // subTitle: body.subTitle,
-    // price: body.price,
-    // description: body.description,
-    // color: body.color,
+    username: body.username,
+    age: body.age,
   };
 
   fs.readFile("./data/users.json", "utf-8", (readError, readData) => {
@@ -104,6 +42,7 @@ app.post("/users", (request, response) => {
         data: [],
       });
     }
+
     const dataObject = JSON.parse(readData);
     dataObject.push(newUser);
 
@@ -126,10 +65,10 @@ app.post("/users", (request, response) => {
   });
 });
 
-app.put("/products", (request, response) => {
+app.put("/users", (request, response) => {
   console.log(request.body);
 
-  fs.readFile("./data/products.json", "utf8", (readError, readData) => {
+  fs.readFile("./data/users.json", "utf8", (readError, readData) => {
     if (readError) {
       response.json({
         status: "File read error",
@@ -138,20 +77,15 @@ app.put("/products", (request, response) => {
     }
 
     const savedData = JSON.parse(readData);
-    // console.log("saved", savedData);
     const changedData = savedData.map((d) => {
       if (d.id === request.body.id) {
-        (d.title = request.body.title),
-          (d.subTitle = request.body.subTitle),
-          (d.price = request.body.price),
-          (d.description = request.body.description),
-          (d.color = request.body.color);
+        (d.username = request.body.username), (d.age = request.body.age);
       }
       return d;
     });
 
     fs.writeFile(
-      "./data/products.json",
+      "./data/users.json",
       JSON.stringify(changedData),
       (writeError) => {
         if (writeError) {
@@ -169,21 +103,21 @@ app.put("/products", (request, response) => {
   });
 });
 
-app.delete("/products", (request, response) => {
+app.delete("/users", (request, response) => {
   const body = request.body;
-  fs.readFile("./data/products.json", "utf-8", (readError, readData) => {
+  fs.readFile("./data/users.json", "utf-8", (readError, readData) => {
     if (readError) {
       response.json({
         status: "File reader error",
-        body: [],
+        data: [],
       });
     }
 
     const readObject = JSON.parse(readData);
-    const filteredObjects = readObject.filter((w) => w.id !== body.productId);
+    const filteredObjects = readObject.filter((w) => w.id !== body.userId);
 
     fs.writeFile(
-      "./data/products.json",
+      "./data/users.json",
       JSON.stringify(filteredObjects),
       (writeError) => {
         if (writeError) {
@@ -192,7 +126,6 @@ app.delete("/products", (request, response) => {
             body: [],
           });
         }
-
         response.json({
           status: "success",
           data: filteredObjects,

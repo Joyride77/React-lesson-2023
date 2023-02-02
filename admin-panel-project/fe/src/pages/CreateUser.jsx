@@ -6,18 +6,10 @@ import LilNavi from '../components/LilNavi';
 import PublishIcon from '@mui/icons-material/Publish';
 
 
-const CreateProduct = () => {
-    const URL = "http://localhost:8080/products"
-    const newProduct = {
-        title: "",
-        subTitle: "",
-        price: "",
-        description: "",
-        color: "",
-    };
-
+const CreateUser = () => {
+    const URL = "http://localhost:8080/users"
     const [color, setColor] = React.useState('');
-    const [product, setProduct] = useState([])
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         fetchAllData();
@@ -26,18 +18,18 @@ const CreateProduct = () => {
     async function fetchAllData() {
         const FETCHED_DATA = await fetch(URL);
         const FETCHED_JSON = await FETCHED_DATA.json();
-        setProduct(FETCHED_JSON.data)
+        setUser(FETCHED_JSON.data)
     }
 
 
     async function handleSubmit(e) {
         e.preventDefault();
         const postData = {
-            title: e.target.title.value,
-            subTitle: e.target.subTitle.value,
-            price: e.target.price.value,
-            description: e.target.description.value,
-            color: e.target.color.value,
+            // title: e.target.title.value,
+            // subTitle: e.target.subTitle.value,
+            // price: e.target.price.value,
+            // description: e.target.description.value,
+            // color: e.target.color.value,
         }
         console.log("data", postData);
 
@@ -51,36 +43,36 @@ const CreateProduct = () => {
 
         const FETCHED_DATA = await fetch(URL, options);
         const FETCHED_JSON = await FETCHED_DATA.json();
-        setProduct(FETCHED_JSON.data);
+        setUser(FETCHED_JSON.data);
     }
     const handleChange = (event) => {
         setColor(event.target.value);
     };
     return (
         <Box m="20px">
-            <LilNavi first="Dashboard" second="Management" third="Creating New Product" />
-            <Header title="New Product" subtitle="Creating new Product" />
+            <LilNavi first="Dashboard" second="Management" third="Creating New User" />
+            <Header title="New User" subtitle="Creating new User" />
 
             <Box sx={{ width: 550 }}>
                 <div>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={4}>
                             <Grid item xs={12}>
-                                <TextField name='title' placeholder="Enter Title" id="filled-basic" label="Title" variant="filled" color="secondary" required fullWidth />
+                                <TextField name='firstName' placeholder="Enter First Name" id="filled-basic" label="First Name" variant="filled" color="secondary" required fullWidth />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField name='subTitle' placeholder="Enter Sub Title" id="filled-basic" label="Subtitle" variant="filled" color="secondary" required fullWidth />
+                                <TextField name='lastName' placeholder="Enter First Name" id="filled-basic" label="Last Name" variant="filled" color="secondary" required fullWidth />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField name='price' placeholder="Enter Price" id="filled-number" label="Price" type="number" InputLabelProps={{ shrink: true, }} variant="filled" color="secondary" required fullWidth />
+                                <TextField name='phoneNumber' placeholder="Enter Phone Number" id="filled-number" label="Phone Number" type="number" InputLabelProps={{ shrink: true, }} variant="filled" color="secondary" required fullWidth />
                             </Grid>
-                            {/* <Grid item xs={12}>
-                            <TextField placeholder="Enter Discount" id="filled-number" label="Discount" type="number" InputLabelProps={{ shrink: true, }} variant="filled" color="secondary" required fullWidth />
-                        </Grid> */}
+                            <Grid item xs={12}>
+                                <TextField name='email' placeholder="Enter E-Mail" id="filled-basic" label="E-Mail" variant="filled" color="secondary" required fullWidth />
+                            </Grid>
                             <Grid item xs={12}>
                                 <TextField name='description' placeholder="Enter Description" id="filled-basic" label="Description" variant="filled" color="secondary" required fullWidth />
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-autowidth-label" color="secondary">Color</InputLabel>
                                     <Select
@@ -108,7 +100,7 @@ const CreateProduct = () => {
                                         <MenuItem value={"Purple"}>Purple</MenuItem>
                                     </Select>
                                 </FormControl>
-                            </Grid>
+                            </Grid> */}
                             {/* <Grid item xs={12}>
                             <TextField placeholder="Enter Rating" id="filled-number" label="Rating" type="number" InputLabelProps={{ shrink: true, }} variant="filled" color="secondary" required fullWidth />
                         </Grid> */}
@@ -131,4 +123,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct
+export default CreateUser
