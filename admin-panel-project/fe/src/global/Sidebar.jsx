@@ -9,6 +9,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LensBlurIcon from '@mui/icons-material/LensBlur';
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -126,15 +127,23 @@ const Sidebar = () => {
                         </Typography>
 
                         <Item
-                            title="Profile Form"
+                            title="Profile"
                             to="/form"
                             icon={<PersonOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        <SubMenu title="Users" icon={<PeopleAltIcon />} >
+                            <Item
+                                title="Management"
+                                to="/users"
+                                icon={<LensBlurIcon />}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                        </SubMenu>
 
                         <SubMenu title="E - commerce" icon={<ShoppingCartIcon />} >
-                            {/* <MenuItem> */}
                             <Item
                                 title="Management"
                                 to="/product-management"
@@ -142,7 +151,6 @@ const Sidebar = () => {
                                 selected={selected}
                                 setSelected={setSelected}
                             />
-                            {/* </MenuItem> */}
                         </SubMenu>
                     </Box>
                 </Menu>

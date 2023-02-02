@@ -105,6 +105,7 @@ app.put("/users", (request, response) => {
 
 app.delete("/users", (request, response) => {
   const body = request.body;
+  console.log("body", request);
   fs.readFile("./data/users.json", "utf-8", (readError, readData) => {
     if (readError) {
       response.json({

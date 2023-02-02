@@ -9,6 +9,22 @@ import Form from "./pages/Form";
 import CreateProduct from "./pages/CreateProduct";
 import ProductManagement from "./pages/ProductManagement";
 import EditProduct from "./pages/EditProduct";
+import Users from "./pages/Users";
+import CreateUser from "./pages/CreateUser";
+import EditUser from "./pages/EditUser";
+
+import {} from "./services/axiosProductsServices";
+
+// import {
+//   Dashboard,
+//   Form,
+//   CreateProduct,
+//   ProductManagement,
+//   EditProduct,
+//   Users,
+//   CreateUser,
+//   EditUser,
+// } from "./pages";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -29,8 +45,11 @@ function App() {
                 path="/product-management"
                 element={<ProductManagement />}
               />
+              <Route path="/users" element={<Users />} />
               <Route path="/create-product" element={<CreateProduct />} />
               <Route path="/edit-product/:id" element={<EditProduct />} />
+              <Route path="/create-user" element={<CreateUser />} />
+              <Route path="/edit-user/:id" element={<EditUser />} />
             </Routes>
           </main>
         </div>
