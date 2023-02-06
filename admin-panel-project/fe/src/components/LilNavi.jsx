@@ -6,9 +6,9 @@ function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
 }
-const LilNavi = ({ first, second, third }) => {
+const LilNavi = ({ first, second, third, }) => {
     const breadcrumbs = [
-        <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
+        <Link underline="hover" key="1" color="inherit" onClick={handleClick}>
             {first}
         </Link>,
         <Link
