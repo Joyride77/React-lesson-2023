@@ -4,12 +4,17 @@ import List from "./components/List";
 import { ImageContext, ImageContextProvider } from "./contexts/ImageContext";
 import { useContext } from "react";
 import StopWatch from "./components/StopWatch";
+import InputFocus from "./components/InputFocus";
+import VideoPlayer from "./components/VideoPlayer";
 
 function App() {
-  const [isLarge, setIsLarge, imageSize] = useContext(ImageContext);
+  // const [isLarge, setIsLarge, imageSize] = useContext(ImageContext);
 
   return (
     <div className="App">
+      <StopWatch />
+      <InputFocus />
+      <VideoPlayer />
       {/* <label>
         Use large images
         <input
@@ -19,8 +24,6 @@ function App() {
         />
       </label>
       <List imageSize={imageSize} /> */}
-
-      <StopWatch />
     </div>
   );
 }
