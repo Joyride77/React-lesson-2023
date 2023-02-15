@@ -11,7 +11,7 @@ const UserResisterForm = () => {
     const [roles, setRoles] = useState([])
     const [currentRole, setCurrentRole] = useState(0)
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchRoles();
@@ -43,8 +43,8 @@ const UserResisterForm = () => {
         }
 
         const FETCHED_DATA = await fetch(URL, options)
-        const FETCHED_JSON = await FETCHED_DATA.json();
-        // console.log(FETCHED_JSON.data);
+        const FETCHED_JSON = await FETCHED_DATA.json()
+        // console.log(FETCHED_JSON)
         if (FETCHED_JSON.status === 'success') {
             navigate('/users')
         }

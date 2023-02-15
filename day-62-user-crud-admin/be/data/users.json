@@ -1,10 +1,1 @@
-[
-  {
-    "firstname": "213",
-    "lastname": "123",
-    "email": "123",
-    "password": "23",
-    "address": "23",
-    "role": { "id": 1, "name": "Admin" }
-  }
-]
+[{"firstname":"qwe","lastname":"qwe","email":"lothergaming77@gmail.com","password":"$2b$10$rWh5u1mDMevJ5mCfY/IFruwse7Y5QVJr11XPsQ8vp8Ia9WzWhsnHC","address":"123","role":{"id":1,"name":"Admin"}}]
