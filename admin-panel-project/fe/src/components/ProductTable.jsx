@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { fetchAllData, deleteProduct } from "../services/axiosProductsServices"
 
 const ProductTable = () => {
-  const URL = "http://localhost:8080/products"
+  const URL = "http://localhost:8082/products"
   const [product, setProduct] = useState([])
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

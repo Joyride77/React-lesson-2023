@@ -10,7 +10,7 @@ import { updateProduct } from "../services/axiosProductsServices"
 const EditProduct = () => {
     let data = useLocation();
     console.log("data", data.state.product);
-    const URL = "http://localhost:8080/products"
+    const URL = "http://localhost:8082/products"
     const [product, setProduct] = useState([])
     const [color, setColor] = React.useState('');
     const [currentProduct, setCurrentProduct] = useState(data.state.product[0]);
