@@ -4,12 +4,12 @@ import { Button, Box, Grid, TextField, InputLabel, MenuItem, FormControl, Select
 import { Link } from 'react-router-dom';
 import LilNavi from '../components/LilNavi';
 import PublishIcon from '@mui/icons-material/Publish';
-import RoleRadio from '../components/RoleRadio';
 import { fetchAllData, createUser } from '../services/axiosUserServices';
 
 
 const CreateUser = () => {
-    const URL = "http://localhost:8080/users"
+    const URL = "http://localhost:8082/users"
+    const [role, setRole] = React.useState('');
     const [user, setUser] = useState([])
 
     useEffect(() => {
@@ -19,6 +19,10 @@ const CreateUser = () => {
     async function handleSubmit(e) {
         createUser(e, URL, setUser)
     }
+
+    const handleChange = (event) => {
+        setRole(event.target.value);
+    };
 
     return (
         <Box m="20px">
@@ -41,12 +45,32 @@ const CreateUser = () => {
                             <Grid item xs={12}>
                                 <TextField name='email' placeholder="Enter E-Mail" label="E-Mail" variant="filled" color="secondary" required fullWidth />
                             </Grid>
-                            <Grid item xs={12}>
-                                <TextField name='description' placeholder="Enter Description" label="Description" variant="filled" color="secondary" required fullWidth />
-                            </Grid>
                             {/* <Grid item xs={12}>
-                                <RoleRadio name="role" first="Admin" second="User" color="secondary" />
+                                <TextField name='description' placeholder="Enter Description" label="Description" variant="filled" color="secondary" required fullWidth />
                             </Grid> */}
+                            <Grid item xs={12}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-autowidth-label" color="secondary">Role</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-autowidth-label"
+                                        id="demo-simple-select-autowidth"
+                                        value={role}
+                                        onChange={handleChange}
+                                        label="Role"
+                                        variant="filled"
+                                        color="secondary"
+                                        required
+                                        name='role'
+                                    >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        <MenuItem value={"Admin"}>Admin</MenuItem>
+                                        <MenuItem value={"User"}>User</MenuItem>
+                                        <MenuItem value={"Customer"}>Customer</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
                             <Grid item xs={12}>
                                 <TextField name='password' placeholder="Enter Password" label="Password" type="password" autoComplete="current-password" variant="filled" color="secondary" required fullWidth
                                 />

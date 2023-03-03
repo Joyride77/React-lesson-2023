@@ -23,8 +23,8 @@ async function createUser(e, URL, setUser) {
     lastName: e.target.lastName.value,
     phoneNumber: e.target.phoneNumber.value,
     email: e.target.email.value,
-    description: e.target.description.value,
-    // role: e.target.role,
+    // description: e.target.description.value,
+    role: e.target.role.value,
     password: e.target.password.value,
   };
   const FETCHED_DATA = await axios({
@@ -35,14 +35,29 @@ async function createUser(e, URL, setUser) {
   setUser(FETCHED_DATA.data.data);
 }
 
+async function userRoleEdit(e, URL, setUser) {
+  e.preventDefault();
+  const postData = {
+    userRoleName: e.target.userRoleName.value,
+  };
+  console.log(postData);
+  const FETCHED_DATA = await axios({
+    url: URL,
+    method: "POST",
+    data: { ...postData },
+  });
+  setUser(FETCHED_DATA.data.data);
+}
+
 async function updateUser(currentUser, URL, setUser) {
   const putData = {
+    id: currentUser.id,
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     phoneNumber: currentUser.phoneNumber,
     email: currentUser.email,
-    description: currentUser.description,
-    // role: currentUser.role,
+    // description: currentUser.description,
+    role: currentUser.role,
     password: currentUser.password,
   };
   const FETCHED_DATA = await axios({
@@ -53,4 +68,4 @@ async function updateUser(currentUser, URL, setUser) {
   setUser(FETCHED_DATA.data.data);
 }
 
-export { fetchAllData, createUser, updateUser, deleteUser };
+export { fetchAllData, createUser, updateUser, deleteUser, userRoleEdit };

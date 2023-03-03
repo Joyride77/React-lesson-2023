@@ -135,8 +135,25 @@ const Sidebar = () => {
                         />
                         <SubMenu title="Users" icon={<PeopleAltIcon />} >
                             <Item
-                                title="Management"
+                                title="User Management"
                                 to="/users"
+                                icon={<LensBlurIcon />}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                        </SubMenu>
+
+                        <SubMenu title="Users Role" icon={<PeopleAltIcon />} >
+                            <Item
+                                title="Role Management"
+                                to="/users-management"
+                                icon={<LensBlurIcon />}
+                                selected={selected}
+                                setSelected={setSelected}
+                            />
+                            <Item
+                                title="User role Add"
+                                to="/user-role"
                                 icon={<LensBlurIcon />}
                                 selected={selected}
                                 setSelected={setSelected}

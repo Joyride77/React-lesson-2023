@@ -7,7 +7,7 @@ import PublishIcon from '@mui/icons-material/Publish';
 import { fetchAllData, createProduct } from "../services/axiosProductsServices"
 
 const CreateProduct = () => {
-    const URL = "http://localhost:8080/products"
+    const URL = "http://localhost:8082/products"
     const [color, setColor] = React.useState('');
     const [product, setProduct] = useState([])
 

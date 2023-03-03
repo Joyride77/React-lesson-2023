@@ -12,6 +12,7 @@ import EditProduct from "./pages/EditProduct";
 import Users from "./pages/Users";
 import CreateUser from "./pages/CreateUser";
 import EditUser from "./pages/EditUser";
+import UserRole from "./pages/UserRole";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -37,6 +38,7 @@ function App() {
               <Route path="/edit-product/:id" element={<EditProduct />} />
               <Route path="/create-user" element={<CreateUser />} />
               <Route path="/edit-user/:id" element={<EditUser />} />
+              <Route path="/user-role" element={<UserRole />} />
             </Routes>
           </main>
         </div>

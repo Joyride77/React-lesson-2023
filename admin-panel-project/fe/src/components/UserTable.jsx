@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { fetchAllData, deleteUser } from "../services/axiosUserServices"
 
 const UserTable = () => {
-    const URL = "http://localhost:8080/users"
+    const URL = "http://localhost:8082/users"
     const [user, setUser] = useState([])
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -25,9 +25,9 @@ const UserTable = () => {
         { field: "lastName", headerName: "Last Name", width: 100 },
         { field: "phoneNumber", headerName: "Phone Number", width: 100 },
         { field: "email", headerName: "E-Mail", width: 100 },
-        { field: "description", headerName: "Description", width: 100 },
+        // { field: "description", headerName: "Description", width: 100 },
+        { field: "role", headerName: "Role", width: 100 },
         { field: "password", headerName: "Password", width: 100 },
-        // { field: "role", headerName: "Role", width: 100 },
         // { field: "Disabled", headerName: "Disabled", width: 100 },
         // { field: "avatar", headerName: "Avatar", width: 100 },
         {

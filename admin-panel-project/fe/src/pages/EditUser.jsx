@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import Header from '../components/Header'
-import { Box, Grid, TextField, Stack, Button } from "@mui/material";
+import { Box, Grid, TextField, Stack, Button, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 import LilNavi from '../components/LilNavi';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import { updateUser } from "../services/axiosUserServices"
 
 const EditUser = () => {
     let data = useLocation();
-    const URL = "http://localhost:8080/users"
+    const URL = "http://localhost:8082/users"
     const [user, setUser] = useState([])
-    const [color, setColor] = React.useState('');
+    const [role, setRole] = React.useState('');
     const [currentUser, setCurrentUser] = useState(data.state.user[0]);
+
+
 
     async function handleEdit() {
         updateUser(currentUser, URL, setUser)
@@ -30,9 +32,13 @@ const EditUser = () => {
     function handleEmail(e) {
         setCurrentUser({ ...currentUser, email: e.target.value });
     }
-    function handleDescription(e) {
-        setCurrentUser({ ...currentUser, description: e.target.value });
-    }
+    // function handleDescription(e) {
+    //     setCurrentUser({ ...currentUser, description: e.target.value });
+    // }
+    const handleChange = (e) => {
+        setRole(e.target.value);
+        setCurrentUser({ ...currentUser, role: e.target.value });
+    };
     function handlePassword(e) {
         setCurrentUser({ ...currentUser, password: e.target.value });
     }
@@ -60,12 +66,32 @@ const EditUser = () => {
                                 <Grid item xs={12}>
                                     <TextField name='email' defaultValue={currentUser.email} onChange={handleEmail} label="E-Mail" variant="filled" color="secondary" required fullWidth />
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <TextField name='description' defaultValue={currentUser.description} onChange={handleDescription} label="Description" variant="filled" color="secondary" required fullWidth />
-                                </Grid>
                                 {/* <Grid item xs={12}>
-                                <RoleRadio name="role" first="Admin" second="User" color="secondary" />
-                            </Grid> */}
+                                    <TextField name='description' defaultValue={currentUser.description} onChange={handleDescription} label="Description" variant="filled" color="secondary" required fullWidth />
+                                </Grid> */}
+                                <Grid item xs={12}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-autowidth-label" color="secondary">Role</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-autowidth-label"
+                                            id="demo-simple-select-autowidth"
+                                            value={currentUser.role}
+                                            onChange={handleChange}
+                                            label="Role"
+                                            variant="filled"
+                                            color="secondary"
+                                            required
+                                            name='role'
+                                        >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value={"Admin"}>Admin</MenuItem>
+                                            <MenuItem value={"User"}>User</MenuItem>
+                                            <MenuItem value={"Customer"}>Customer</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
                                 <Grid item xs={12}>
                                     <TextField name='password' defaultValue={currentUser.password} onChange={handlePassword} label="Password" type="password" autoComplete="current-password" variant="filled" color="secondary" required fullWidth
                                     />
