@@ -63,7 +63,7 @@ const UserRole = () => {
                                     >
                                         <PublishIcon />
                                     </Button>
-                                    <Link to={"/users"} style={{ textDecoration: "none" }}>
+                                    <Link to={"/users-role-management"} style={{ textDecoration: "none" }}>
                                         <Button variant="outlined" color='secondary'>
                                             Back
                                         </Button>
