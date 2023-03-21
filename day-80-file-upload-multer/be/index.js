@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
+const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -20,14 +21,34 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
+app.get("/files", async (req, res) => {
+  const path = "./uploads/";
+  const imgs = [];
+  fs.readdirSync(path).forEach((file) => {
+    const imgURL = `http://localhost:${PORT}/uploads/${file}`;
+    imgs.push(imgURL);
+  });
+
+  res.status(200).json({
+    data: imgs,
+  });
+});
+
 app.get("/", (req, res) => {
   res.send("<h1>Hello day-80 Fileupload Multer</h1>");
 });
 
-app.post("/fileUpload", upload.single("image"), (req, res, next) => {
-  console.log(req.file);
+app.post("/fileUpload", upload.single("image"), async (req, res, next) => {
+  const path = "./uploads/";
+  const imgs = [];
+
+  fs.readdirSync(path).forEach((file) => {
+    const urlPath = `http://localhost:${PORT}/uploads/${file}`;
+    imgs.push(urlPath);
+  });
+
   res.json({
-    data: [],
+    data: imgs,
   });
 });
 
