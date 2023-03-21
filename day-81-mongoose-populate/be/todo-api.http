@@ -1,0 +1,42 @@
+GET http://localhost:8080/todo/list HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/todo/create HTTP/1.1
+Content-Type: application/json
+
+[
+    {
+        "name": "Washing Dishes",
+        "checked": false,
+        "category": "64192f5999963dd82c6ced63"
+    }
+]
+
+###
+
+PUT http://localhost:8080/todo/update HTTP/1.1
+Content-Type: application/json
+
+[
+    {
+        "checked": true
+    },
+    {
+        "name": "Washing Dishes"
+    }
+]
+
+###
+
+DELETE http://localhost:8080/todo/delete HTTP/1.1
+Content-Type: application/json
+
+
+    {
+        "checked": false
+    }
+
+
+###
