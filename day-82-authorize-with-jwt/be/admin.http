@@ -1,0 +1,19 @@
+POST http://localhost:8080/admin/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "timer@gmail.com",
+    "password": "hello"
+}
+
+###
+
+POST http://localhost:8080/admin/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "lother@gmail.com",
+    "password": "fewafae"
+}
+
+###
