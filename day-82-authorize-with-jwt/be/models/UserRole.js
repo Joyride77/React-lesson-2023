@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-// Admin hereglegch bol buh erhtei
-// Customer hereglegch bol Admin Panel dotor nevterch chadahgui
-// User hereglegch bol zarim neg Admin Panel ustgah, uurchluh esvel uusgeh erhgui
+// Admin хэрэглэгч бол бүх эрхтэй хэрэглэгч байна
+// Customer хэрэглэгч бол Admin Panel руу нэвтэрч чадахгүй хэрэглэгч байна
+// User хэрэглэгч нь зарим нэг Admin Panel дээр устгах, өөрчлөх эсвэл үүсгэх эрхгүй хэрэглэгч байна.
 
 const userRoleSchema = new mongoose.Schema({
   name: {
@@ -12,6 +12,6 @@ const userRoleSchema = new mongoose.Schema({
   },
 });
 
-const UserRole = mongoose.model("userrole", userRoleSchema);
+const UserRole = mongoose.model("UserRole", userRoleSchema);
 
 module.exports = UserRole;

@@ -7,26 +7,25 @@ const UserRole = require("../models/UserRole");
 
 adminApi.post("/register", async (req, res) => {
   const data = req.body;
-
+  console.log(req.body);
   if (data) {
     const oldUser = await Users.findOne({ email: data.email });
-
     if (oldUser) {
       return res.status(400).json({
         success: false,
-        error: "User already exists",
+        status: "Хэрэглэгч аль хэдийн үүссэн байна. Нэвтэрч орно уу.",
       });
     }
-
     var hashedPassword = await bcrypt.hash(data.password, 10);
+
     data.password = hashedPassword;
 
     try {
       const user = await Users.create(data);
       const result = await user.populate("userrole");
       res.status(201).json({
-        message: "Successfully created",
-        email: result,
+        message: "Хэрэглэгч амжилттай үүслээ",
+        data: result,
       });
     } catch (error) {
       res.status(500).json({
@@ -34,21 +33,6 @@ adminApi.post("/register", async (req, res) => {
         error: error,
       });
     }
-
-    // Users.create({ data })
-    //   .then((data) => {
-    //     res.status(201).json({
-    //       message: "Successfully created",
-    //       email: data.email,
-    //     });
-    //     return;
-    //   })
-    //   .catch((error) => {
-    //     res.status(500).json({
-    //       success: false,
-    //       error,
-    //     });
-    //   });
   } else {
     return res.json({
       error: "The input field is empty",
