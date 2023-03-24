@@ -3,11 +3,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const adminApi = require("./routes/admin-api");
 const api = require("./routes/api");
+require("dotenv").config();
 
 const app = express();
-const PORT = 8080;
-const MONGO_CONNECTION_STRING =
-  "mongodb+srv://Joyride:google@joyride.qzidazn.mongodb.net/joy_mern";
+const PORT = process.env.PORT;
+const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
 
 app.use(express.json());
 app.use(cors());
