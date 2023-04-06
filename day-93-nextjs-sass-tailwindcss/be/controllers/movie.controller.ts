@@ -8,7 +8,8 @@ export const getMovies = async (req: Request, res: Response) => {
     const movies = await movieModel
       .find({})
       .limit(moviesPerPage)
-      .skip(moviesPerPage * page);
+      .skip(moviesPerPage * page)
+      .sort({ year: -1 });
     res.status(200).json(movies);
   } catch (error) {
     res.status(404).json({ data: [] });

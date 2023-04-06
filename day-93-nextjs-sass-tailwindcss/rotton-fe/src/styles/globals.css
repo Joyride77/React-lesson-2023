@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #f3f3f3;
+  font-family: "Franklin Gothic", -apple-system, BlinkMacSystemFont, "PT Sans",
+    Arial, Sans-Serif;
+}

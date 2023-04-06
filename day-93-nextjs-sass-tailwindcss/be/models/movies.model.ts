@@ -15,10 +15,12 @@ interface IImdb {
 interface IViewer {
   rating: Number;
   numReviews: Number;
+  meter: Number;
 }
 
 interface ITomatoes {
   viewer: IViewer;
+  production: string;
   lastUpdated: Date;
 }
 
@@ -38,7 +40,7 @@ interface IMovie {
   writers: [string];
   awards: IAwards;
   lastupdated: Date;
-  year: Number;
+  year: Date;
   imdb: IImdb;
   type: {
     type: string;

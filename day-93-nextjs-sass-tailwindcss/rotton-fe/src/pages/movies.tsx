@@ -8,7 +8,6 @@ export default function Movies(): JSX.Element {
         <div className={styles.mycontainer}>
             <NavigationBar />
             <MovieCard />
-
         </div>
     )
 }
